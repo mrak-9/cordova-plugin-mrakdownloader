@@ -24,6 +24,7 @@ not already installed.
 
 ```javascript
 var dl = new download();
+var data = {'test':'123456'};
 
 dl.Initialize({
     fileSystem : cordova.file.dataDirectory,
@@ -31,6 +32,7 @@ dl.Initialize({
     unzip: true,
     remove: true,
     timeout: 0,
+    data: data,
     success: DownloaderSuccess,
     error: DownloaderError
 });
@@ -58,6 +60,7 @@ function DownloaderSuccess() {
 | `folder`      | `folder`                     | Directory within `fileSystem` to store downloaded file and unzip. Created if doesn't exist|
 | `unzip`       | `false`                      | Set `true` to attempt to unzip the downloaded file|
 | `remove`      | `false`                      | Set `true` to remove the zip file after unzipping|
+| `data`        | {}                           | Data to use|
 | `timeout`     | `0`                          | Download timeout in milliseconds. Set to 0 for infinite time|
 | `success`     | `undefined`                  | Success callback|
 | `error`       | `undefined`                  | Error callback. Argument indicates problem|

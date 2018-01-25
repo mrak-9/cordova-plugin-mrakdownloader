@@ -6,6 +6,7 @@ function Download() {
         folder: "folder",
         unzip: false,
         remove: false,
+        data: [],
         timeout: 0
     };
 }
@@ -33,6 +34,10 @@ Download.prototype.Initialize = function(settings) {
 
     if(typeof settings.remove !== "undefined") {
         this.Settings.remove = settings.remove;
+    }
+
+    if(typeof settings.data !== "undefined") {
+        this.Settings.data = settings.data;
     }
 
     if(typeof settings.timeout !== "undefined") {

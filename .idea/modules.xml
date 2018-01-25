@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/cordova-plugin-downloader.iml" filepath="$PROJECT_DIR$/.idea/cordova-plugin-downloader.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cordova-plugin-mrakdownloader.iml" filepath="$PROJECT_DIR$/cordova-plugin-mrakdownloader.iml" />
     </modules>
   </component>
 </project>
