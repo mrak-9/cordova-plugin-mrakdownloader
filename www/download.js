@@ -1,6 +1,6 @@
 /** @namespace cordova **/
 
-function Download() {
+function MrakDownload() {
     this.Settings = {
         fileSystem : cordova.file.dataDirectory,
         folder: "folder",
@@ -18,7 +18,7 @@ function Download() {
  * .success (function to call when successful), .error (function to call on error)
  *
  */
-Download.prototype.Initialize = function(settings) {
+MrakDownload.prototype.Initialize = function(settings) {
 
     if(typeof settings.fileSystem !== "undefined") {
         this.Settings.fileSystem = settings.fileSystem;
@@ -54,30 +54,30 @@ Download.prototype.Initialize = function(settings) {
 
 };
 
-Download.prototype.Get = function(url) {
+MrakDownload.prototype.Get = function(url) {
 
     var that = this;
 
     if(cordova && typeof window.resolveLocalFileSystemURL !== 'undefined') {
-        window.resolveLocalFileSystemURL(this.Settings.fileSystem, GetParentPathSuccess, function() { that.Settings.error(0); /* ERROR 0: Cannot resolve filesystem */});
+        window.resolveLocalFileSystemURL(this.Settings.fileSystem, GetParentPathSuccess, function() { that.Settings.error(0, that); /* ERROR 0: Cannot resolve filesystem */});
     }
     else {
-        console.log("download.Get supported on Cordova only");
-        this.Settings.error(1); //ERROR 1: Cordova only
+        console.log("MrakDownload.Get supported on Cordova only");
+        this.Settings.error(1, that); //ERROR 1: Cordova only
     }
 
     function GetParentPathSuccess(parentEntry) {
 
         if(parentEntry.isDirectory === false) {
-            that.Settings.error(2);  //ERROR 2: Cannot create destination folder
+            that.Settings.error(2, that);  //ERROR 2: Cannot create destination folder
         }
         else {
-            parentEntry.getDirectory(that.Settings.folder, {create: true}, DownloadFile, function() { that.Settings.error(2); });
+            parentEntry.getDirectory(that.Settings.folder, {create: true}, MrakDownloadFile, function() { that.Settings.error(2, that); });
         }
 
     }
 
-    function DownloadFile(dirEntry) {
+    function MrakDownloadFile(dirEntry) {
 
         var xhr = new XMLHttpRequest();
         xhr.open('GET', url, true);
@@ -91,13 +91,13 @@ Download.prototype.Get = function(url) {
                 saveFile(dirEntry, blob, GetLastPath(url));
             }
             else {
-                that.Settings.error(3); //ERROR 3: Transfer error
+                that.Settings.error(3, that); //ERROR 3: Transfer error
             }
         };
 
-        xhr.onabort = function () { that.Settings.error(4); /*ERROR 4: Abort*/ };
-        xhr.onerror = function () { that.Settings.error(5); /*ERROR 5: Network error */ };
-        xhr.ontimeout = function () { that.Settings.error(6); /*ERROR 6: Timeout */ };
+        xhr.onabort = function () { that.Settings.error(4, that); /*ERROR 4: Abort*/ };
+        xhr.onerror = function () { that.Settings.error(5, that); /*ERROR 5: Network error */ };
+        xhr.ontimeout = function () { that.Settings.error(6, that); /*ERROR 6: Timeout */ };
 
 
         xhr.send();
@@ -110,7 +110,7 @@ Download.prototype.Get = function(url) {
 
             writeFile(fileEntry, fileData);
 
-        }, function() { that.Settings.error(7); /*ERROR 7: File create error*/ });
+        }, function() { that.Settings.error(7, that); /*ERROR 7: File create error*/ });
     }
 
     function writeFile(fileEntry, dataObj) {
@@ -125,15 +125,13 @@ Download.prototype.Get = function(url) {
                     that.Unzip(fileEntry.fullPath); //TODO Unzip
                 }
                 else {
-                    that.Settings.success();
+                    that.Settings.success(that);
                 }
-
-
             };
 
             fileWriter.onerror = function(e) {
                 //console.log("Failed file write: " + e.toString());
-                that.Settings.error(8); //ERROR 8: File write error
+                that.Settings.error(8, that); //ERROR 8: File write error
             };
 
             fileWriter.write(dataObj);
@@ -143,7 +141,7 @@ Download.prototype.Get = function(url) {
 
 }; // Get()
 
-Download.prototype.Unzip = function(zipFilePath) {
+MrakDownload.prototype.Unzip = function(zipFilePath) {
     //namespace to ignore JSHint warns about zip
     /** @namespace zip **/
 
@@ -154,13 +152,13 @@ Download.prototype.Unzip = function(zipFilePath) {
 
     function UnzipComplete(status) {
         if(status === -1) {
-            that.Settings.error(9); //UNZIP error
+            that.Settings.error(9, that); //UNZIP error
         }
         else if(that.Settings.remove === true) {
             RemoveZipFile(zipFilePath);
         }
         else {
-            that.Settings.success();
+            that.Settings.success(that);
         }
     }
 
@@ -173,10 +171,10 @@ Download.prototype.Unzip = function(zipFilePath) {
         window.resolveLocalFileSystemURL(fszipFilePath,
             function(entry) {
                 if(entry.isFile) {
-                    entry.remove(that.Settings.success, function() { that.Settings.error(10); /* Delete error #1 */ });
+                    entry.remove(that.Settings.success, function() { that.Settings.error(10, that); /* Delete error #1 */ });
                 }
                 else {
-                    that.Settings.error(11); //Delete error #2
+                    that.Settings.error(11, that); //Delete error #2
                 }
 
             },
@@ -223,5 +221,4 @@ function Join(pathList) {
 }
 
 /** @namespace module **/
-module.exports = Download;
-
+module.exports = MrakDownload;
