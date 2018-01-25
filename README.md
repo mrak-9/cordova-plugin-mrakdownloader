@@ -1,4 +1,6 @@
-# cordova-plugin-downloader
+# cordova-plugin-mrakdownloader
+
+Plugin based https://github.com/benjaminmwilson/cordova-plugin-downloader
 
 Cordova plugin to download, store and unzip files with no `cordova-file-transfer`
 dependency. `cordova-file-transfer` was recently [depreciated](https://cordova.apache.org/blog/2017/10/18/from-filetransfer-to-xhr2.html).
@@ -15,7 +17,7 @@ Inspired by `cordova-plugin-fastrde-downloader` but with less features.
 
 ## Installation
 
-    cordova plugin add cordova-plugin-downloader
+    cordova plugin add https://github.com/mrak-9/cordova-plugin-mrakdownloader
 
 This will also install `cordova-plugin-file` and `cordova-plugin-zip` if
 not already installed.

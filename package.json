@@ -1,7 +1,7 @@
 {
-  "name": "cordova-plugin-downloader",
-  "version": "0.0.3",
-  "description": "Cordova Downloader Plugin with no cordova-file-transfer dependency",
+  "name": "cordova-plugin-mrakdownloader",
+  "version": "0.0.1",
+  "description": "Cordova MrakDownloader Plugin with no cordova-file-transfer dependency",
   "devDependencies": {
     "chai": "^4.1.2",
     "chai-spies": "^1.0.0",
@@ -16,7 +16,7 @@
     "test": "mocha lib/**/**.spec.js"
   },
   "cordova": {
-    "id": "cordova-plugin-downloader",
+    "id": "cordova-plugin-mrakdownloader",
     "platforms": [
       "android",
       "ios"
@@ -24,7 +24,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/benjaminmwilson/cordova-plugin-downloader"
+    "url": "https://github.com/mrak-9/cordova-plugin-mrakdownloader"
   },
   "keywords": [
     "cordova",

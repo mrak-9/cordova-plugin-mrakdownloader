@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
-        id="cordova-plugin-downloader" version="0.0.3">
-    <name>Downloader</name>
-    <description>Cordova Downloader Plugin with no cordova-file-transfer dependency</description>
-    <author>Ben Wilson</author>
+        id="cordova-plugin-mrakdownloader" version="0.0.1">
+    <name>MrakDownload</name>
+    <description>Cordova MrakDownloader Plugin with no cordova-file-transfer dependency</description>
+    <author>Mrak-9</author>
     <license>Apache 2.0</license>
     <keywords>cordova,download,downloader,file,unzip</keywords>
 
-    <repo>https://github.com/benjaminmwilson/cordova-plugin-downloader</repo>
-    <issue>https://github.com/benjaminmwilson/cordova-plugin-downloader/issues</issue>
+    <repo>https://github.com/mrak-9/cordova-plugin-mrakdownloader</repo>
+    <issue>https://github.com/benjaminmwilson/cordova-plugin-mrakdownloader/issues</issue>
 
     <engines>
         <engine name="cordova" version=">=5.0.0" />
