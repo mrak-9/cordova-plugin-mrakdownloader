@@ -6,7 +6,7 @@ function MrakDownload() {
         folder: "folder",
         unzip: false,
         remove: false,
-        data: [],
+        data: {},
         timeout: 0
     };
 }
