@@ -25,7 +25,7 @@ not already installed.
 ## Basic Usage
 
 ```javascript
-var dl = new download();
+var dl = new MrakDownload();
 var data = {'test':'123456'};
 
 dl.Initialize({
@@ -43,8 +43,8 @@ dl.Initialize({
 dl.Get("https://www.yourdomain.com/somezipfile.zip");
 
 function DownloaderError(err) {
-    console.log("download error: " + err);
-    alert("download error: " + err);
+    console.log("MrakDownload error: " + err);
+    alert("MrakDownload error: " + err);
 }
 
 function DownloaderSuccess() {
